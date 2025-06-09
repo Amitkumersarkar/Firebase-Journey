@@ -1,9 +1,17 @@
-import { GoogleAuthProvider } from "firebase/auth/web-extension";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import auth from "../../FireBase/Firebase.init";
 
 const Login = () => {
     const provider = new GoogleAuthProvider();
     const handleGoogleSignIn = () => {
-        console.log('sign in with google');
+        console.log(provider, auth);
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((error) => {
+                console.log('Error', error);
+            });
     }
     return (
         <div className="bg-base-200 min-h-screen flex items-start pt-10 px-4">
