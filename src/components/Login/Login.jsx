@@ -1,6 +1,10 @@
+import { GoogleAuthProvider } from "firebase/auth/web-extension";
 
 const Login = () => {
-
+    const provider = new GoogleAuthProvider();
+    const handleGoogleSignIn = () => {
+        console.log('sign in with google');
+    }
     return (
         <div className="bg-base-200 min-h-screen flex items-start pt-10 px-4">
             <div className="flex flex-col items-center w-full max-w-md mx-auto space-y-6">
@@ -28,7 +32,7 @@ const Login = () => {
                             <div className="text-right">
                                 <a className="link link-hover text-sm">Forgot password?</a>
                             </div>
-                            <button className="btn btn-ghost text-white text-xl font-semibold bg-cyan-700 w-full">Login</button>
+                            <button onClick={handleGoogleSignIn} className="btn btn-ghost text-white text-xl font-semibold bg-cyan-700 w-full">Login</button>
                         </fieldset>
                     </div>
                 </div>
