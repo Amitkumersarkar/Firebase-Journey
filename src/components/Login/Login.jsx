@@ -1,16 +1,20 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import auth from "../../FireBase/Firebase.init";
+import { useState } from "react";
 
 const Login = () => {
+    const [user, setUser] = useState(null);
     const provider = new GoogleAuthProvider();
     const handleGoogleSignIn = () => {
         console.log(provider, auth);
         signInWithPopup(auth, provider)
             .then((result) => {
-                console.log(result);
+                console.log(result.user);
+                setUser(result.user);
             })
             .catch((error) => {
                 console.log('Error', error);
+                setUser(null);
             });
     }
     return (
@@ -41,6 +45,7 @@ const Login = () => {
                                 <a className="link link-hover text-sm">Forgot password?</a>
                             </div>
                             <button onClick={handleGoogleSignIn} className="btn btn-ghost text-white text-xl font-semibold bg-cyan-700 w-full">Login</button>
+                            {user && <h4>{user.displayName}</h4>}
                         </fieldset>
                     </div>
                 </div>
